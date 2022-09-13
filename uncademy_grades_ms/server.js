@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+require("dotenv").config();
 const app = express();
 app.use(cors());
 // parse requests of content-type - application/json
@@ -46,7 +47,7 @@ app.get("/", (req, res) => {
 // set port, listen for requests
 require("./app/routes/index")(app);
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.NODE_DOCKER_PORT || 8080;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
 });
