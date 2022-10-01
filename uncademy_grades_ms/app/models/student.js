@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
             Student.hasMany(models.EnrolledStudent);
         }
         static async findStudent(sn,sp){
-            const [results, metadata] = await sequelize.query("select * from student where studentName = ? and studyProgram = ?",{replacements:[sn,sp]})
+            const [results, metadata] = await sequelize.query("select * from Student where studentName = ? and studyProgram = ?",{replacements:[sn,sp]})
             return results;
         }
     }

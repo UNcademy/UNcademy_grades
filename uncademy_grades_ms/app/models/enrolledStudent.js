@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
             EnrolledStudent.belongsTo(models.Student);
         }
         static async findEnrolledStudent(cl,st){
-            const [results, metadata] = await sequelize.query("select * from enrolledstudent where ClassListClassListId = ? and StudentStudentId = ?",{replacements:[cl,st]})
+            const [results, metadata] = await sequelize.query("select * from EnrolledStudent where ClassListClassListId = ? and StudentStudentId = ?",{replacements:[cl,st]})
             return results;
         }
     }

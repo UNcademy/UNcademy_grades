@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
             Teacher.hasMany(models.TeacherRole);
         }
         static async findTeacherByName(name){
-            const [results, metadata] = await sequelize.query("select * from teacher where teacherName = ?",{replacements:[name]})
+            const [results, metadata] = await sequelize.query("select * from Teacher where teacherName = ?",{replacements:[name]})
             return results;
         }
     }

@@ -3,21 +3,21 @@
     "username": "swarch2022ii",
     "password": "2022",
     "database": "uncademy_grades_db",
-    "host": "127.0.0.1",
+    "host": "172.17.0.2",
     "dialect": "mysql"
   },
   "test": {
     "username": "swarch2022ii",
     "password": "2022",
     "database": "uncademy_grades_db",
-    "host": "127.0.0.1",
+    "host": "172.17.0.2",
     "dialect": "mysql"
   },
   "production": {
     "username": "swarch2022ii",
     "password": "2022",
     "database": "uncademy_grades_db",
-    "host": "127.0.0.1",
+    "host": "172.17.0.2",
     "dialect": "mysql"
   }
 }

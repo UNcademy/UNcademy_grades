@@ -9,12 +9,12 @@ module.exports = (sequelize, DataTypes) => {
         }
 
         static async findTask(id){
-            const [results, metadata] = await sequelize.query("select * from task where TeacherRoleClassListClassListId = ?",{replacements:[id]})
+            const [results, metadata] = await sequelize.query("select * from Task where TeacherRoleClassListClassListId = ?",{replacements:[id]})
             return results;
         }
 
         static async findTaskByTeacher(id1,id2){
-            const [results, metadata] = await sequelize.query("select * from task where TeacherRoleClassListClassListId = ? and TeacherRoleTeacherTeacherId = ?",{replacements:[id1,id2]})
+            const [results, metadata] = await sequelize.query("select * from Task where TeacherRoleClassListClassListId = ? and TeacherRoleTeacherTeacherId = ?",{replacements:[id1,id2]})
             return results;
         }
     }

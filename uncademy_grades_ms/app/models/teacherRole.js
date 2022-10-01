@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
             const jue = {}
             const vie = {}
             const sab = {}
-            const [results, metadata] = await sequelize.query("select * from teacherrole left join classlist on teacherrole.ClassListClassListId = classlist.classListId where semester = ? and TeacherTeacherId = ?",{replacements:[sem,id]})
+            const [results, metadata] = await sequelize.query("select * from TeacherRole left join ClassList on TeacherRole.ClassListClassListId = ClassList.classListId where semester = ? and TeacherTeacherId = ?",{replacements:[sem,id]})
             for (const row of results) {
                 if (row.wDays.split(",").includes('Lun')) {
                     lun[row.schedule] = {
@@ -77,7 +77,7 @@ module.exports = (sequelize, DataTypes) => {
             const dHours = h.split("-")
             let count = 0
             for (const d of weekdays) {
-                const [results, metadata] = await sequelize.query("select * from teacherrole left join classlist on teacherrole.ClassListClassListId = classlist.classListId where semester = ? and TeacherTeacherId = ?", {replacements: [sem,tid]})
+                const [results, metadata] = await sequelize.query("select * from TeacherRole left join ClassList on TeacherRole.ClassListClassListId = ClassList.classListId where semester = ? and TeacherTeacherId = ?", {replacements: [sem,tid]})
                 for (const row of results){
                     if (row.wDays === null || row.schedule == null){
                         count = 0
@@ -97,7 +97,7 @@ module.exports = (sequelize, DataTypes) => {
             return count;
         }
         static async findTeacherRole(cid,tid){
-            const [results, metadata] = await sequelize.query("select * from teacherrole where ClassListClassListId = ? and TeacherTeacherId = ?",{replacements:[cid,tid]})
+            const [results, metadata] = await sequelize.query("select * from TeacherRole where ClassListClassListId = ? and TeacherTeacherId = ?",{replacements:[cid,tid]})
             return results;
         }
     }

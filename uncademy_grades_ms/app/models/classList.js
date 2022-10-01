@@ -12,12 +12,12 @@ module.exports = (sequelize, DataTypes) => {
             ClassList.hasMany(models.EnrolledStudent);
         }
         static async findClassList(sem,cn,cg){
-            const [results, metadata] = await sequelize.query("select * from classlist where semester = ? and courseName = ? and courseGroup = ?",{replacements:[sem,cn,cg]})
+            const [results, metadata] = await sequelize.query("select * from ClassList where semester = ? and courseName = ? and courseGroup = ?",{replacements:[sem,cn,cg]})
             return results;
         }
 
         static async findClassListByPk(id){
-            const [results, metadata] = await sequelize.query("select * from classlist where classListId = ?",{replacements:[id]})
+            const [results, metadata] = await sequelize.query("select * from ClassList where classListId = ?",{replacements:[id]})
             return results;
         }
     }
