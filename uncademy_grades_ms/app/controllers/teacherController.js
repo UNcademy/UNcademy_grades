@@ -50,7 +50,7 @@ exports.editTeacher = (req,res) => {
             if (data.length === 0){
                 res.status(400).send({
                     message:
-                        "The teacher was not found."
+                        "The teacher was not related to this class list."
                 });
             } else {
                 ClassList.findByPk(req.params.lid)
@@ -62,7 +62,7 @@ exports.editTeacher = (req,res) => {
                             isHead: req.body.isHead
                         }
                         const semester = data.dataValues.semester
-                        TeacherRole.occupiedSchedule(teacherInfo.wDays,teacherInfo.schedule,semester,req.params.tid)
+                        TeacherRole.occupiedSchedule(teacherInfo.wDays,teacherInfo.schedule,semester,req.params.tid, req.params.lid)
                             .then(sch => {
                                 if (sch === 0){
                                     TeacherRole.update(teacherInfo, {

@@ -57,7 +57,7 @@ exports.saveClassList = (req,res) => {
                                     });
                                 });
                         } else {
-                            TeacherRole.occupiedSchedule(req.body.wDays,req.body.schedule,classList.semester,found[0].teacherId)
+                            TeacherRole.occupiedSchedule(req.body.wDays,req.body.schedule,classList.semester,found[0].teacherId, -1)
                                 .then(sch => {
                                     if (sch === 0){
                                         ClassList.create(classList)
