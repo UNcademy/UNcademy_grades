@@ -172,7 +172,7 @@ exports.clDetails = (req,res) => {
                             model: db.EnrolledStudent,
                             include: [{
                                 model: db.Student,
-                                attributes: ['studentName','studyProgram'],
+                                attributes: ['studentId','studentName','studyProgram'],
                             },
                                 {
                                     model: db.Task,
@@ -186,7 +186,7 @@ exports.clDetails = (req,res) => {
                         },
                             {
                                 model: db.Teacher,
-                                attributes: ['teacherName'],
+                                attributes: ['teacherId','teacherName'],
                                 through: {
                                     attributes: ['isHead']
                                 }
@@ -209,13 +209,13 @@ exports.clDetails = (req,res) => {
                             model: db.EnrolledStudent,
                             include: {
                                 model: db.Student,
-                                attributes: ['studentName','studyProgram'],
+                                attributes: ['studentId','studentName','studyProgram'],
                             },
                             attributes: ['absences','isApproved']
                         },
                             {
                                 model: db.Teacher,
-                                attributes: ['teacherName'],
+                                attributes: ['teacherId','teacherName'],
                                 through: {
                                     attributes: ['isHead']
                                 }
