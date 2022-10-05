@@ -18,6 +18,7 @@ module.exports = (app) => {
     router.delete("/class/:lid/student/:sid/remove", StudentController.removeStudent);
 
     // Management of teachers (internal)
+    router.post("/class/addTeacher/:cid", TeacherController.addTeacher);
     router.put("/class/:lid/teacher/:tid/edit", TeacherController.editTeacher);
     router.delete("/class/:lid/teacher/:tid/remove", TeacherController.removeTeacher);
 

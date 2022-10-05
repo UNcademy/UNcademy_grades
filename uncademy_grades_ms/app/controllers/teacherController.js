@@ -1,6 +1,88 @@
 const db = require("../models");
 const TeacherRole = db.TeacherRole;
 const ClassList = db.ClassList;
+const Teacher = db.Teacher;
+
+exports.addTeacher = (req, res) => {
+    Teacher.findTeacherByName(req.body.teacherName)
+        .then(found2 => {
+            const newTeacher = {teacherName: req.body.teacherName}
+            if(found2.length === 0){
+                Teacher.create(newTeacher)
+                    .then(newData => {
+                        const newTeacherRole = {
+                            TeacherTeacherId: newData.teacherId,
+                            ClassListClassListId: req.params.cid,
+                            isHead: false,
+                            classroom: req.body.classroom,
+                            wDays: req.body.wDays,
+                            schedule: req.body.schedule
+                        }
+                        TeacherRole.create(newTeacherRole)
+                            .then()
+                            .catch(err => {
+                                res.status(400).send({
+                                    message:
+                                    err.message
+                                });
+                            });
+                        res.status(200).send({
+                            message:
+                                "The teacher was added to the classList."
+                        })
+                    })
+                    .catch(err => {
+                        res.status(400).send({
+                            message:
+                            err.message
+                        });
+                    });
+            } else {
+                TeacherRole.findTeacherRole(req.params.cid,found2[0].teacherId)
+                    .then(found3 => {
+                        if(found3.length === 0){
+                            const newTeacherRole = {
+                                TeacherTeacherId: found2[0].teacherId,
+                                ClassListClassListId: req.params.cid,
+                                isHead: false,
+                                classroom: req.body.classroom,
+                                wDays: req.body.wDays,
+                                schedule: req.body.schedule
+                            }
+                            TeacherRole.create(newTeacherRole)
+                                .then()
+                                .catch(err => {
+                                    res.status(400).send({
+                                        message:
+                                        err.message
+                                    });
+                                })
+                            res.status(200).send({
+                                message:
+                                    "The teacher was added to the classList."
+                            })
+                        } else {
+                            res.status(400).send({
+                                message:
+                                "This teacher was already related to Class List"
+                            });
+                        }
+                    })
+                    .catch(err => {
+                        res.status(400).send({
+                            message:
+                            err.message
+                        });
+                    });
+            }
+        })
+        .catch(err => {
+            res.status(400).send({
+                message:
+                err.message
+            });
+        });
+}
 
 exports.removeTeacher = (req,res) => {
     TeacherRole.findTeacherRole(req.params.lid,req.params.tid)
