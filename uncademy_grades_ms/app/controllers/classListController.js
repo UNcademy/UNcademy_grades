@@ -167,7 +167,7 @@ exports.clDetails = (req,res) => {
             } else {
                 if (found[0].isNum){
                     ClassList.findByPk(req.params.id,{
-                        attributes: ['semester','courseName','courseGroup'],
+                        attributes: ['semester','courseName','courseGroup','isNum'],
                         include: [{
                             model: db.EnrolledStudent,
                             include: [{
